@@ -44,6 +44,37 @@ shopt -u nullglob
 
 [[ ${#PNGS[@]} -gt 0 ]] || die "No .png files found."
 
+IN_GIT=0
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 && IN_GIT=1
+
+# Decide whether a preview must be regenerated.
+# Git does not preserve mtimes (checkout/pull stamps files with the current
+# time), so a plain mtime comparison flags untouched badges as stale and
+# re-encodes them, producing byte-different output with other ImageMagick /
+# optipng versions. Use git history instead; fall back to mtime outside git.
+needs_update() {
+  local img=$1 out=$2
+  [[ -f "$out" ]] || return 0                         # preview missing
+
+  if [[ $IN_GIT -eq 0 ]]; then
+    [[ "$img" -nt "$out" ]]
+    return
+  fi
+
+  # Source modified, staged or untracked: regenerate unless the preview was
+  # already written after the source was last edited.
+  if [[ -n "$(git status --porcelain -- "$img")" ]]; then
+    [[ "$img" -nt "$out" ]]
+    return
+  fi
+
+  local src_t out_t
+  src_t=$(git log -1 --format=%ct -- "$img")
+  out_t=$(git log -1 --format=%ct -- "$out")
+  [[ -z "$out_t" ]] && return 0                       # preview never committed
+  (( src_t > out_t ))
+}
+
 for size in "${SIZES[@]}"; do
   outdir="${PREVIEW_ROOT}/${size}"
   mkdir -p "$outdir"
@@ -51,12 +82,13 @@ for size in "${SIZES[@]}"; do
   for img in "${PNGS[@]}"; do
     base="$(basename "$img")"
     out="${outdir}/${base}"
-    tmp="$(mktemp --suffix=.png)"
 
-    if [[ $FORCE -eq 0 && -f "$out" && "$out" -nt "$img" ]]; then
+    if [[ $FORCE -eq 0 ]] && ! needs_update "$img" "$out"; then
       echo "Skipping ${img} (${size}px up-to-date)"
       continue
     fi
+
+    tmp="$(mktemp --suffix=.png)"
 
     echo "Generating ${img} → ${out} (${size}px)"
 
@@ -71,6 +103,7 @@ for size in "${SIZES[@]}"; do
 
     if [[ -f "$out" ]] && cmp -s "$tmp" "$out"; then
       rm -f "$tmp"
+      touch "$out"
     else
       mv -f "$tmp" "$out"
     fi
