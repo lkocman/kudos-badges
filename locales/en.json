@@ -155,6 +155,10 @@
     "title": "10000 Translations",
     "description": "For translating 10000 strings on l10n.opensuse.org."
   },
+  "l10n-100000": {
+    "title": "100000 Translations",
+    "description": "For translating 100000 strings on l10n.opensuse.org."
+  },
   "localization": {
     "title": "Localization guru",
     "description": "Recognition for openSUSE translations."
