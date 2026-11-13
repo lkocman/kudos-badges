@@ -260,23 +260,23 @@
     "description": "Recognition for developing openSUSE Webservices."
   },
   "wiki-1": {
-    "title": "Wiki Contributor",
+    "title": "First Wiki Contribution",
     "description": "Recognition for the first day/page documentation contribution on en.opensuse.org wiki."
   },
   "wiki-10": {
-    "title": "Wiki Bronze",
+    "title": "10 Wiki Contributions",
     "description": "Recognition for 10 day/page documentation contributions on en.opensuse.org wiki."
   },
   "wiki-100": {
-    "title": "Wiki Silver",
+    "title": "100 Wiki Contributions",
     "description": "Recognition for 100 day/page documentation contributions on en.opensuse.org wiki."
   },
   "wiki-1000": {
-    "title": "Wiki Gold",
+    "title": "1000 Wiki Contributions",
     "description": "Recognition for 1000 day/page documentation contributions on en.opensuse.org wiki."
   },
   "wiki-100000": {
-    "title": "Wiki Legend",
+    "title": "10000 Wiki Contributions",
     "description": "Recognition for 10000 day/page documentation contributions on en.opensuse.org wiki."
   }
 }
