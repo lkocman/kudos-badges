@@ -231,6 +231,10 @@
     "title": "1000 Tumbleweed Contributions",
     "description": "For submitting 1000 Submit Requests to openSUSE:Factory."
   },
+  "tumbleweed-10000": {
+    "title": "10000 Tumbleweed Contributions",
+    "description": "For submitting 10000 Submit Requests to openSUSE:Factory."
+  },
   "webdev": {
     "title": "openSUSE Web developer",
     "description": "Recognition for developing openSUSE Webservices."
