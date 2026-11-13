@@ -279,8 +279,12 @@
     "title": "1000 Wiki Contributions",
     "description": "Recognition for 1000 day/page documentation contributions on en.opensuse.org wiki."
   },
-  "wiki-100000": {
+  "wiki-10000": {
     "title": "10000 Wiki Contributions",
     "description": "Recognition for 10000 day/page documentation contributions on en.opensuse.org wiki."
+  },
+  "wiki-100000": {
+    "title": "100000 Wiki Contributions",
+    "description": "Recognition for 100000 day/page documentation contributions on en.opensuse.org wiki."
   }
 }
