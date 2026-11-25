@@ -59,6 +59,10 @@
     "title": "Got 1000 Kudos",
     "description": "Received 1000 kudos."
   },
+  "hackweek26": {
+    "title": "Hack Week 26",
+    "description": "For creating or joining a project in Hack Week 26."
+  },
   "hero": {
     "title": "openSUSE Hero",
     "description": "openSUSE Hero"
